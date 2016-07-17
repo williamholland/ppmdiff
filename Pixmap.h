@@ -7,6 +7,8 @@
 
 using std::list;
 
+int euclid(int u, int v);
+
 class Pixmap
 {
 

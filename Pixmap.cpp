@@ -18,24 +18,27 @@ int euclid(int u, int v) {
 Pixmap operator-(const Pixmap &p1, const Pixmap &p2)
 {
     Pixmap pixmap;
-    Pixel *pix;
     int gcd = euclid(p1.maxval(),p2.maxval());
     Pixmap p1prime;
     Pixmap p2prime;
 
-    // scale to lowest common maxval
-    p1prime = p1 * ( p2.maxval() / gcd );
-    p2prime = p2 * ( p1.maxval() / gcd );
+    // scale to a common maxval
+    //p1prime = p1 * ( p2.maxval() / gcd );
+    //p2prime = p2 * ( p1.maxval() / gcd );
+    p1prime = p1;
+    p2prime = p2;
 
     pixmap.setWidth(p1.width());
     pixmap.setHeight(p1.height());
     pixmap.setMaxval(p1.maxval() * p2.maxval() / gcd);
 
-    citr i1 = p1prime.pixels().begin();
+    list<Pixel> pixels1 = p1prime.pixels();
     list<Pixel> pixels2 = p2prime.pixels();
+    citr i1 = pixels1.begin();
     for( citr i2 = pixels2.begin(); i2 != pixels2.end(); ++i2) {
-        *pix = (*i1) - (*i2);
-        pixmap.addPixel(*pix);
+        Pixel pix = (*i1) - (*i2);
+        pixmap.addPixel(pix);
+        ++i1;
     }
 
     return pixmap;

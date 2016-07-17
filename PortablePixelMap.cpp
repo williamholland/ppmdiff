@@ -9,7 +9,6 @@
 #include "PortablePixelMap.h"
 
 using std::endl;
-using std::cout;
 using std::string;
 using std::list;
 using std::getline;
