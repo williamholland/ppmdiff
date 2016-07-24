@@ -23,10 +23,10 @@ Pixmap operator-(const Pixmap &p1, const Pixmap &p2)
     Pixmap p2prime;
 
     // scale to a common maxval
-    //p1prime = p1 * ( p2.maxval() / gcd );
-    //p2prime = p2 * ( p1.maxval() / gcd );
     p1prime = p1;
     p2prime = p2;
+    p1prime *= ( p2.maxval() / gcd );
+    p2prime *= ( p1.maxval() / gcd );
 
     pixmap.setWidth(p1.width());
     pixmap.setHeight(p1.height());
